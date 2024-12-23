@@ -215,8 +215,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-
--- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
 --    :Lazy
@@ -255,7 +253,16 @@ require('lazy').setup({
       },
     },
   },
-
+  {
+    'ellisonleao/gruvbox.nvim',
+    priority = 1000,
+    config = true,
+    init = function()
+      vim.o.background = 'dark' -- or "light" for light mode
+      vim.cmd.colorscheme 'gruvbox'
+      vim.cmd.hi 'Comment gui=none'
+    end,
+  },
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -844,10 +851,10 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-night'
 
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
     end,
   },
 
